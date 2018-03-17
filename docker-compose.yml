@@ -1,0 +1,17 @@
+db:
+    image: mysql
+    restart: always
+    environment:
+        - MYSQL_ROOT_PASSWORD=super_secret
+        - MYSQL_DATABASE=monica
+        - MYSQL_USER=monica
+        - MYSQL_PASSWORD=secret
+
+monica:
+    image: monicahq/monicahq
+    links:
+        - db
+    ports:
+        - "80:80"
+    env_file:
+        - monica.env
